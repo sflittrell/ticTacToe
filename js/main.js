@@ -1,4 +1,40 @@
+let Model = {
+    c: null,
+    init: function (controller) {
+        this.c = controller;
+    }
+}
+
+let View = {
+    m: null,
+    init: function (model) {
+        this.m = model;
+    }
+}
+
+let Controller = {
+    v: null,
+    m: null,
+    init: function (view, model) {
+        this.v = view;
+        this.m = model;
+    }
+}
+
+let App = {
+    m: Object.create(Model),
+    v: Object.create(View),
+    c: Object.create(Controller),
+
+    init: function () {
+        this.m.init(this.c);
+        this.v.init(this.m);
+        this.c.init(this.v, this.m);
+    }
+}
+
 let player = '';
+let turnCount = 0;
 
 function players() {
     let players = document.createElement('div');
@@ -32,7 +68,7 @@ function firstPlayer() {
     whoFirst.setAttribute('class', 'row');
     whoFirst.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4');
     whoFirst.setAttribute('id', 'whoFirst')
-    whoFirst.innerHTML = `<h1>${player}'s go first!</h1>`;
+    whoFirst.innerHTML = `<h1>It's ${player}'s turn</h1>`;
     document.getElementById('mainContainer').appendChild(whoFirst);
 }
 
@@ -45,28 +81,42 @@ function board() {
 }
 
 function newRow(rows, columns) {
+    let j = 0;
+    let step = columns;
 
-
-    for (let i = 1; i <= rows; i++) {
+    for (let i = 0; i < rows; i++) {
         let newRow = document.createElement('div');
         newRow.setAttribute('class', 'row');
         newRow.setAttribute('id', `row${i}`);
         newRow.classList.add('h-25');
         document.getElementById('board').appendChild(newRow);
-        console.log(i);
-        let j = 1;
-            for (j; j <= columns; j++) {
+        // console.log(i);
+
+            for (j; j < step; j++) { // change columns to reflect
                 let newColumn = document.createElement('div');
                 newColumn.setAttribute('class', 'col');
                 newColumn.setAttribute('id', `col${j}`);
-                newColumn.classList.add('border', 'border-3', 'border-dark', 'h-100');
-                newColumn.innerHTML = '';
+                newColumn.classList.add('tile', 'border', 'border-3', 'border-dark', 'h-100');
+                // newColumn.innerHTML = '';
                 document.getElementById(`row${i}`).appendChild(newColumn);
-
-                console.log(j);
+                // console.log(j);
             }
+            step = j + columns;
+            // console.log(step)
         }
     }
+
+    let press = document.getElementById('tile');
+
+    function click() {
+        if (player === 'O') {
+            this.innerHTML = 'O';
+        } else {
+            this.innerHTML = 'X';
+        }
+    }
+
+    newColumn.addEventListener('click', click());
 
 
 
