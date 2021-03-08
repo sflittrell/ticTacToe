@@ -1,0 +1,33 @@
+# Tic Tac Toe
+
+Objects:
+
+
+Variables:
+
+Functions:
+    Initialize function
+        Starts the game by creating the board, selecting what player goes first, and clearing the variables of any leftover info from a previous game
+
+    Player Selection
+        Picks a random number between 1 and 2. If the number is 1 then player one (X) goes first, if the number is 2 then player 2 (O) goes first
+
+    Create Board
+        A loop that creates each tile on the board using the 
+
+    Create Tile
+        A function that 
+
+function addNew(x) {
+    for (let i = 0; i <= x; i++) {// x is the number of times to run the loop
+        const newDiv = document.createElement('div');
+        newDiv.setAttribute('class', 'col')
+        newDiv.setAttribute('id', `row${x}`)
+        document.container.appendChild(board);
+    }
+}
+
+
+r1 = [0, 0, 0]
+r2 = [0, 0, 0]
+r3 = [0, 0, 0]
