@@ -33,8 +33,13 @@ let App = {
     }
 }
 
+// ===================== Global Variables =====================
+
 let player = '';
 let turnCount = 0;
+let winArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+// ===================== Creates the Players =====================
 
 function players() {
     let players = document.createElement('div');
@@ -57,6 +62,8 @@ function players() {
     
 }
 
+// ===================== Selects Who Goes First and Creates the HTML to Show It =====================
+
 function firstPlayer() {
     let playerSelect = Math.round(Math.random());
     if (playerSelect === 0) {
@@ -72,6 +79,18 @@ function firstPlayer() {
     document.getElementById('mainContainer').appendChild(whoFirst);
 }
 
+// ===================== Changes Who's Turn it is and Displays it in the HTML =====================
+
+function changePlayer() {
+    if (player === 'O') {
+        player = 'X';
+    } else {
+        player = 'O';
+    }
+    document.getElementById('whoFirst').innerHTML = `<h1>It's ${player}'s turn</h1>`;
+}
+// ===================== Create Board Container =====================
+
 function board() {
     let board = document.createElement('div');
     board.setAttribute('class', 'container');
@@ -79,6 +98,8 @@ function board() {
     board.classList.add('boarder', 'boarder-2', 'h-50')
     document.getElementById('mainContainer').appendChild(board);
 }
+
+// ===================== Create the Board Tiles with Rows and Columns =====================
 
 function newRow(rows, columns) {
     let j = 0;
@@ -95,9 +116,9 @@ function newRow(rows, columns) {
             for (j; j < step; j++) { // change columns to reflect
                 let newColumn = document.createElement('div');
                 newColumn.setAttribute('class', 'col');
-                newColumn.setAttribute('id', `col${j}`);
-                newColumn.classList.add('tile', 'border', 'border-3', 'border-dark', 'h-100');
-                // newColumn.innerHTML = '';
+                newColumn.setAttribute('id', `${j}`);
+                newColumn.classList.add('tile', 'border', 'border-3', 'border-dark', 'h-100', 'center-text');
+                newColumn.addEventListener('click', click);
                 document.getElementById(`row${i}`).appendChild(newColumn);
                 // console.log(j);
             }
@@ -106,19 +127,29 @@ function newRow(rows, columns) {
         }
     }
 
-    let press = document.getElementById('tile');
+// ===================== What Happens on Click =====================
 
-    function click() {
-        if (player === 'O') {
-            this.innerHTML = 'O';
-        } else {
-            this.innerHTML = 'X';
-        }
+function click(e) {
+    if (player === 'O') {
+        e.target.innerHTML = 'O';
+    } else {
+        e.target.innerHTML = 'X';
+    }
+    let index = e.target.getAttribute('id');
+    if (player === 'O') {
+        winArr[index] = 'O';
+    } else {
+        winArr[index] = "X";
+    }
+    e.target.removeEventListener('click', click);
+    turnCount++;
+    changePlayer();
     }
 
-    newColumn.addEventListener('click', click());
 
 
+
+// ===================== Initialization Function =====================
 
 function init() {
     players();
