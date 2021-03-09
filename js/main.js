@@ -127,6 +127,29 @@ function newRow(rows, columns) {
         }
     }
 
+// ===================== Create Reset Button =====================
+
+function rstBtn() {
+    let rstBtn = document.createElement('button');
+    rstBtn.setAttribute('type', 'button');
+    rstBtn.setAttribute('id', 'rstBtn');
+    rstBtn.classList.add('border');
+    rstBtn.innerText = 'Reset';
+    rstBtn.addEventListener('click', reset);
+    document.getElementById('board').appendChild(rstBtn);
+}
+
+// ===================== Reset Button Click =====================
+
+function reset() {
+    for (let k = 0; k < winArr.length; k++) {
+        document.getElementById(k).addEventListener('click', click);
+        document.getElementById(k).textContent = '';
+    }
+    winArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    turnCount = 0;
+}
+
 // ===================== What Happens on Click =====================
 
 function click(e) {
@@ -137,15 +160,14 @@ function click(e) {
     }
     let index = e.target.getAttribute('id');
     if (player === 'O') {
-        winArr[index] = 'O';
+        winArr[index] = 1;
     } else {
-        winArr[index] = "X";
+        winArr[index] = 2;
     }
     e.target.removeEventListener('click', click);
     turnCount++;
     changePlayer();
     }
-
 
 
 
@@ -156,4 +178,5 @@ function init() {
     firstPlayer();
     board();
     newRow(3, 3);
+    rstBtn();
 }
