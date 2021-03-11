@@ -7,6 +7,7 @@ class App { // - an initializer for the javascript
     this.turnCount = 0 // what turn are you on at any given time
     this.winArr = [];
     this.gameOver = false
+    this.draw = false
     }
 
     // ------------------- Methods ---------------------
@@ -62,41 +63,49 @@ class App { // - an initializer for the javascript
     }
 
     changePlayer() {
-        if (currentPlayer === 'O') {
-            currentPlayer = 'X';
+        if (this.currentPlayer === 'O') {
+            this.currentPlayer = 'X';
         } else {
-            currentPlayer = 'O';
+            this.currentPlayer = 'O';
         }
-        document.getElementById('whoFirst').innerHTML = `<h1>It's ${currentPlayer}'s turn</h1>`;
+        document.getElementById('whoFirst').innerHTML = `<h1>It's ${this.currentPlayer}'s turn</h1>`;
     }
 
     checkWin() {
-        if (winArr[0] == currentPlayer && winArr[1] == currentPlayer && winArr[2] == currentPlayer) {
-            winner = true;
-        } else if (winArr[3] == currentPlayer && winArr[4] == currentPlayer && winArr[5] == currentPlayer) {
-            winner = true;
-        } else if (winArr[6] == currentPlayer && winArr[7] == currentPlayer && winArr[8] == currentPlayer) {
-            winner = true;
-        } else if (winArr[0] == currentPlayer && winArr[3] == currentPlayer && winArr[6] == currentPlayer) {
-            winner = true;
-        } else if (winArr[1] == currentPlayer && winArr[4] == currentPlayer && winArr[7] == currentPlayer) {
-            winner = true;
-        } else if (winArr[2] == currentPlayer && winArr[5] == currentPlayer && winArr[8] == currentPlayer) {
-            winner = true;
-        } else if (winArr[0] == currentPlayer && winArr[4] == currentPlayer && winArr[8] == currentPlayer) {
-            winner = true;
-        } else if (winArr[2] == currentPlayer && winArr[4] == currentPlayer && winArr[6] == currentPlayer) {
-            winner = true;
+        if (app.winArr[0].currentState == app.currentPlayer && app.winArr[1].currentState == app.currentPlayer && app.winArr[2].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[3].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[6].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[3].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[1].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
+            return true;
+        } else if (app.turnCount == 9) {
+            app.draw = true;
+        } else {
+            return false;
         }
     }
 
     reset() {
-        for (let k = 0; k < winArr.length; k++) {
-            document.getElementById(k).addEventListener('click', click);
-            document.getElementById(k).textContent = '';
+        for (let k = 0; k < app.winArr.length; k++) {
+            app.winArr[k].clicked = false;
+            app.winArr[k].tileHTML.textContent = '';
+            app.winArr[k].currentState = '';
         }
-        winArr = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        turnCount = 0;
+        this.currentPlayer = '';
+        this.winArr = []
+        app.turnCount = 0;
+        document.getElementById('win').classList.add('d-none');
+        app.randomPlayer();
     }
 
     rstBtn() {
@@ -109,10 +118,21 @@ class App { // - an initializer for the javascript
         document.getElementById('board').appendChild(rstBtn);
     }
 
-    gameOver() {
-        if (winner = true) {
+    gameOverF() {
+        if (app.checkWin() == true) {
+            document.getElementById('win').innerHTML = `<h1> ${app.currentPlayer} IS THE WINNER!</h1>`;
             document.getElementById('win').classList.remove('d-none');
+            for (let l = 0; l < app.winArr.length; l++) {
+                app.winArr[l].clicked = true;
+            }
+        } else if (app.draw == true) {
+            document.getElementById('win').innerHTML = `<h1> IT'S A DRAW!`;
+            document.getElementById('win').classList.remove('d-none');
+            for (let l = 0; l < app.winArr.length; l++) {
+                app.winArr[l].clicked = true;   
+            }
         }
+
     }
 }
 
@@ -122,7 +142,6 @@ class Board { // - a container that holds all the individual tiles
         this.element = 'div'
         this.classes = 'container', 'boarder', 'boarder-2', 'h-50' // bootstrap styling
         this.id = 'board' //a unique id
-        this.tiles = [] //an array of all the tiles
         this.parent = 'mainContainer'
     }
 
@@ -145,10 +164,9 @@ class Tile { //- each individual tile in the tic tac toe grid
     this.id = id //unique id for each tile populated dynamically with a function (for loop)
     this.listener = '' //the event listener that looks for the tile being clicked
     this.clicked = false // set to false by default
-    this.tileHtml = '' //inner html for each tile, set to empty string by default
     this.parent = ''
     this.currentState = ''
-    this.HTML = HTML
+    this.tileHTML = HTML
     }
 
     // --------------- Methods --------------
@@ -170,9 +188,9 @@ class Tile { //- each individual tile in the tic tac toe grid
                     newColumn.setAttribute('class', 'col');
                     newColumn.setAttribute('id', `${j}`);
                     newColumn.classList.add('tile', 'border', 'border-3', 'border-dark', 'h-100', 'center-text');
-                    newColumn.addEventListener('click', this.onClick.bind(this, i));
-                    let tileObj = new Tile(i, newColumn);
+                    let tileObj = new Tile(j, newColumn);
                     app.winArr.push(tileObj);
+                    newColumn.addEventListener('click', this.onClick.bind(this, tileObj));
                     document.getElementById(`row${i}`).appendChild(newColumn);
                     // console.log(j);
                 }
@@ -181,25 +199,31 @@ class Tile { //- each individual tile in the tic tac toe grid
             }
         }
 
-        onClick(e) {
+        onClick(tileObj, id) {
+            // console.log(tileObj, id);
+            if (tileObj.clicked == false) {
+                tileObj.clicked = true
 
-            if (app.currentPlayer === 'O') {
-                e.target.innerHTML = 'O';
-            } else {
-                e.target.innerHTML = 'X';
+                if (app.currentPlayer === 'O') {
+                    tileObj.tileHTML.innerText = 'O';
+                    tileObj.currentState = 'O';
+                } else {
+                    tileObj.tileHTML.innerText = 'X';
+                    tileObj.currentState = 'X';
+                }
+            
+            // console.log(tileObj);
+            // e.target.removeEventListener('click', click);
+                console.log(app.turnCount)
+                app.turnCount++;
+                console.log(app.turnCount)
+                app.checkWin();
+                // console.log(app, this);
+                app.gameOverF();
+                app.changePlayer();
+                // console.log(app.currentPlayer);
             }
-            let index = e.target.getAttribute('id');
-            if (app.currentPlayer === 'O') {
-                winArr[index] = 'O';
-            } else {
-                app.winArr[index] = 'X';
-            }
-            e.target.removeEventListener('click', click);
-            turnCount++;
-            checkWin();
-            gameOver();
-            changePlayer();
-            }
+        }
 }
 
 function init() {
