@@ -2,12 +2,108 @@
 
 
 
-Objects:
+Classes:
 
+App - an initializer for the javascript
+
+    constructor() {
+    this.currentPlayer = '' //who's turn it is, null by default, randomly set on init
+    this.turnCount = 0 // what turn are you on at any given time
+    this.gameOver = false
+    }
+
+    Functions - 
+
+        createHeader() {
+
+        }
+
+        checkWinner() {
+
+        }
+
+        reset() {
+
+        }
+
+Board - a container that holds all the individual tiles
+
+    constructor(parent) {
+    this.classes = class // bootstrap styling
+    this.id = id //a unique id
+    this.tiles = [] //an array of all the tiles
+    this.parent = parent
+    }
+
+    Methods - 
+
+    renderBoard() { // creates the board in HTML
+        let board = document.createElement('div');
+        board.setAttribute('class', 'this.classes');
+        board.setAttribute('id', 'board');
+        board.classList.add('boarder', 'boarder-2', 'h-50')
+        document.getElementById('mainContainer').appendChild(board);
+}
+
+
+Tile - each individual tile in the tic tac toe grid
+
+    constructor(listener, parent) {
+    this.element = div
+    this.classes = col; //bootstrap styling
+    this.id = 0 //unique id for each tile populated dynamically with a function (for loop)
+    this.listener = listener //the event listener that looks for the tile being clicked
+    this.clicked = false // set to false by default
+    this.tileHtml = '' //inner html for each tile, set to empty string by default
+    this.parent = parent
+    this.currentState = ''
+    }
+
+    Methods - 
+
+        genTiles() {
+            for (let i = 0; i < rows; i++) {
+            let tile = document.createElement(Tile.element);
+            tile.setAttribute('class', 'row');
+            tile.setAttribute('id', `row${i}`);
+            tile.classList.add('h-25');
+            document.getElementById('board').appendChild(newRow);
+            }
+        }
+
+        onClick() {
+            Get current player
+                IF current player = O insert O into the event target tile
+                ELSE insert X into the event target tile
+                IF player = O set currentState of event target tile to O
+                ELSE set currentState of event target tile to X
+                SET clicked of event target tile to true
+                SET turnCount++
+                UPDATE current player
+        }
+
+
+Global Functions:
+
+    Initialization Functions - 
+
+
+
+
+=====================================================================
 
 Variables:
 
-Functions:
+
+
+    generateElement(name, element, class, id, parent, child) {
+        let name = document.createElement('element');
+        name.classList.add();
+        newRow.setAttribute('id', `row${i}`);
+        newRow.classList.add('h-25');
+        document.getElementById('board').appendChild(newRow);
+    }
+
     Initialize function
         Starts the game by creating the board, selecting what player goes first, and clearing the variables of any leftover info from a previous game
 
@@ -28,7 +124,24 @@ function addNew(x) {
         document.container.appendChild(board);
     }
 }
+Empty is 0
+O is 1
+X is 2
 
+if (winArr[0] + winArr[1] + winArr[2] = 3 && winArr[0] * winArr[1] * winArr[2] != 0) {
+    O wins
+} else if (winArr[0] + winArr[1] + winArr[2] = 6 && winArr[0] * winArr[1] * winArr[2] != 0) {
+    O wins
+
+    let step = 0
+    for (let i = step; i < winArr.length; i++) {
+        if (winArr[i] + winArr[i + 1] + winArr[i +2] = 3) {
+            O wins
+        } else if (winArr[i] + winArr[i + 1] + winArr[i +2] = 6) {
+            X wins
+        }
+        step += 3;
+    }
 
 r1 = [0, 0, 0]
 r2 = [0, 0, 0]
