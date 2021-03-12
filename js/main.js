@@ -31,48 +31,48 @@ class App { // - an initializer for the javascript
     }
 
     checkWin() {
-        if (app.winArr[0].currentState == app.currentPlayer && app.winArr[1].currentState == app.currentPlayer && app.winArr[2].currentState == app.currentPlayer) {
-            app.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        if (this.winArr[0].currentState == this.currentPlayer && this.winArr[1].currentState == this.currentPlayer && this.winArr[2].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[3].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer) {
-            app.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[3].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[5].currentState == this.currentPlayer) {
+            this.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[6].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
-            app.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[6].currentState == this.currentPlayer && this.winArr[7].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[3].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
-            app.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[0].currentState == this.currentPlayer && this.winArr[3].currentState == this.currentPlayer && this.winArr[6].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[1].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer) {
-            app.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[1].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[7].currentState == this.currentPlayer) {
+            this.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
-            app.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[2].currentState == this.currentPlayer && this.winArr[5].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
-            app.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[0].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
-            app.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
-            app.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+        } else if (this.winArr[2].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[6].currentState == this.currentPlayer) {
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.turnCount == 9) {
-            app.draw = true;
+        } else if (this.turnCount == 9) {
+            this.draw = true;
         } else {
             return false;
         }
