@@ -1,6 +1,7 @@
-// Classes:  
+// ++++++++++++++++++++ App (controller) ++++++++++++++++++++
 
-class App { // - an initializer for the javascript
+
+class App {
 
     constructor() {
     this.currentPlayer = '' //who's turn it is, null by default, randomly set on init
@@ -10,7 +11,7 @@ class App { // - an initializer for the javascript
     this.draw = false
     }
 
-    // ------------------- Methods ---------------------
+    // ------------------- Picks a Random Player ---------------------
     
     randomPlayer() {
         let playerSelect = Math.round(Math.random());
@@ -21,6 +22,9 @@ class App { // - an initializer for the javascript
         }
     }
 
+    // -------------------- Changes Who's Turn it is and Displays it in the HTML --------------------
+
+
     changePlayer() {
         if (this.currentPlayer === 'O') {
             this.currentPlayer = 'X';
@@ -29,6 +33,9 @@ class App { // - an initializer for the javascript
         }
         document.getElementById('whoFirst').innerHTML = `<h1>It's ${this.currentPlayer}'s turn</h1>`;
     }
+
+    // -------------------- Check for Win Condition --------------------
+
 
     checkWin() {
         if (this.winArr[0].currentState == this.currentPlayer && this.winArr[1].currentState == this.currentPlayer && this.winArr[2].currentState == this.currentPlayer) {
@@ -78,19 +85,25 @@ class App { // - an initializer for the javascript
         }
     }
 
+    // -------------------- What Happens When Reset Button Clicked --------------------
+
+
     reset() {
         for (let k = 0; k < app.winArr.length; k++) {
             app.winArr[k].clicked = false;
             app.winArr[k].tileHTML.innerHTML = '';
             app.winArr[k].currentState = '';
         }
-        this.currentPlayer = '';
-        this.winArr = []
+        app.currentPlayer = '';
         app.turnCount = 0;
+        app.draw = false;
         document.getElementById('win').classList.add('d-none');
         document.getElementById('rstBtn').classList.add('d-none');
         app.randomPlayer();
     }
+
+    // -------------------- On Win --------------------
+
 
     gameOverF() {
         if (app.checkWin() == true) {
@@ -112,6 +125,8 @@ class App { // - an initializer for the javascript
     }
 }
 
+// ++++++++++++++++++++ Board (View) ++++++++++++++++++++
+
 class Board { // - a container that holds all the individual tiles
 
     constructor() {
@@ -121,7 +136,9 @@ class Board { // - a container that holds all the individual tiles
         this.parent = 'mainContainer'
     }
 
-    // ------------ Methods ---------------- 
+
+    // -------------------- Create Board Container --------------------
+
 
     renderBoard() { // creates the board in HTML
         let board = document.createElement('div');
@@ -131,6 +148,9 @@ class Board { // - a container that holds all the individual tiles
         document.getElementById('mainContainer').appendChild(board);
     }
 
+    // -------------------- Create Header --------------------
+
+
     createHeader() {
         let header = document.createElement('div');
         header.setAttribute('class', 'row');
@@ -139,6 +159,9 @@ class Board { // - a container that holds all the individual tiles
         header.innerHTML = '<h1>Tic Tac Toe<h1>';
         document.getElementById('mainContainer').appendChild(header);
     }
+
+    // -------------------- Creates the Players --------------------
+
 
     players() {
         let players = document.createElement('div');
@@ -162,6 +185,9 @@ class Board { // - a container that holds all the individual tiles
         document.getElementById('players').appendChild(name2);  
     }
 
+    // -------------------- Message to Say Who Goes First --------------------
+
+
     createPlayer() {
         let whoFirst = document.createElement('div');
         whoFirst.setAttribute('class', 'row');
@@ -176,6 +202,9 @@ class Board { // - a container that holds all the individual tiles
         document.getElementById('mainContainer').appendChild(win);
     }
 
+    // -------------------- Create Reset Button --------------------
+
+
     rstBtn() {
         let rstBtn = document.createElement('button');
         rstBtn.setAttribute('type', 'button');
@@ -187,6 +216,7 @@ class Board { // - a container that holds all the individual tiles
     }
 }
 
+// ++++++++++++++++++++ Tile ++++++++++++++++++++
 
 class Tile { //- each individual tile in the tic tac toe grid
 
@@ -200,7 +230,8 @@ class Tile { //- each individual tile in the tic tac toe grid
     this.tileHTML = HTML
     }
 
-    // --------------- Methods --------------
+    // -------------------- Create the Board Tiles with Rows and Columns --------------------
+
 
     grid(rows, columns) {
         let j = 0;
@@ -230,6 +261,9 @@ class Tile { //- each individual tile in the tic tac toe grid
             }
         }
 
+    // -------------------- What Happens on Tile Click --------------------
+
+
         onClick(tileObj) {
             // console.log(tileObj, id);
             if (tileObj.clicked == false) {
@@ -256,6 +290,8 @@ class Tile { //- each individual tile in the tic tac toe grid
             }
         }
 }
+
+// -------------------- Initialization Function --------------------
 
 function init() {
     app = new App();
