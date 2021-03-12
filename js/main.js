@@ -12,10 +12,6 @@ class App { // - an initializer for the javascript
 
     // ------------------- Methods ---------------------
     
-    createHeader() {
-
-        }
-
     randomPlayer() {
         let playerSelect = Math.round(Math.random());
         if (playerSelect === 0) {
@@ -23,43 +19,6 @@ class App { // - an initializer for the javascript
         } else {
             this.currentPlayer = 'X';
         }
-    }
-    
-    createPlayer() {
-        let whoFirst = document.createElement('div');
-        whoFirst.setAttribute('class', 'row');
-        whoFirst.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4');
-        whoFirst.setAttribute('id', 'whoFirst')
-        whoFirst.innerHTML = `<h1>It's ${this.currentPlayer}'s turn</h1>`;
-        document.getElementById('mainContainer').appendChild(whoFirst);
-        let win = document.createElement('div');
-        win.setAttribute('class', 'row');
-        win.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4', 'd-none');
-        win.setAttribute('id', 'win')
-        document.getElementById('mainContainer').appendChild(win);
-    }
-
-    players() {
-        let players = document.createElement('div');
-        players.setAttribute('class', 'row');
-        players.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4');
-        players.setAttribute('id', 'players')
-        document.getElementById('mainContainer').appendChild(players);
-
-        let name = document.createElement('div');
-        name.setAttribute('class', 'col');
-        name.classList.add('border', 'border-2');
-        name.setAttribute('id', `player-1`);
-        name.innerHTML = `<h1>Player 1<br>X`;
-        document.getElementById('players').appendChild(name);
-
-        let name2 = document.createElement('div');
-        name2.setAttribute('class', 'col');
-        name2.classList.add('border', 'border-2');
-        name2.setAttribute('id', `player-2`);
-        name2.innerHTML = `<h1>Player 2<br>O`;
-        document.getElementById('players').appendChild(name2);
-        
     }
 
     changePlayer() {
@@ -72,24 +31,48 @@ class App { // - an initializer for the javascript
     }
 
     checkWin() {
-        if (app.winArr[0].currentState == app.currentPlayer && app.winArr[1].currentState == app.currentPlayer && app.winArr[2].currentState == app.currentPlayer) {
+        if (this.winArr[0].currentState == this.currentPlayer && this.winArr[1].currentState == this.currentPlayer && this.winArr[2].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[3].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer) {
+        } else if (this.winArr[3].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[5].currentState == this.currentPlayer) {
+            this.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[6].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+        } else if (this.winArr[6].currentState == this.currentPlayer && this.winArr[7].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[3].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
+        } else if (this.winArr[0].currentState == this.currentPlayer && this.winArr[3].currentState == this.currentPlayer && this.winArr[6].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[3].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[1].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[7].currentState == app.currentPlayer) {
+        } else if (this.winArr[1].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[7].currentState == this.currentPlayer) {
+            this.winArr[1].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[7].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[5].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+        } else if (this.winArr[2].currentState == this.currentPlayer && this.winArr[5].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[5].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[0].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[8].currentState == app.currentPlayer) {
+        } else if (this.winArr[0].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[8].currentState == this.currentPlayer) {
+            this.winArr[0].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[8].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.winArr[2].currentState == app.currentPlayer && app.winArr[4].currentState == app.currentPlayer && app.winArr[6].currentState == app.currentPlayer) {
+        } else if (this.winArr[2].currentState == this.currentPlayer && this.winArr[4].currentState == this.currentPlayer && this.winArr[6].currentState == this.currentPlayer) {
+            this.winArr[2].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[4].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
+            this.winArr[6].tileHTML.innerHTML = '<img class= "ian" src="./img/thugIan.png">';
             return true;
-        } else if (app.turnCount == 9) {
-            app.draw = true;
+        } else if (this.turnCount == 9) {
+            this.draw = true;
         } else {
             return false;
         }
@@ -98,36 +81,29 @@ class App { // - an initializer for the javascript
     reset() {
         for (let k = 0; k < app.winArr.length; k++) {
             app.winArr[k].clicked = false;
-            app.winArr[k].tileHTML.textContent = '';
+            app.winArr[k].tileHTML.innerHTML = '';
             app.winArr[k].currentState = '';
         }
         this.currentPlayer = '';
         this.winArr = []
         app.turnCount = 0;
         document.getElementById('win').classList.add('d-none');
+        document.getElementById('rstBtn').classList.add('d-none');
         app.randomPlayer();
-    }
-
-    rstBtn() {
-        let rstBtn = document.createElement('button');
-        rstBtn.setAttribute('type', 'button');
-        rstBtn.setAttribute('id', 'rstBtn');
-        rstBtn.classList.add('border');
-        rstBtn.innerText = 'Reset';
-        rstBtn.addEventListener('click', this.reset);
-        document.getElementById('board').appendChild(rstBtn);
     }
 
     gameOverF() {
         if (app.checkWin() == true) {
             document.getElementById('win').innerHTML = `<h1> ${app.currentPlayer} IS THE WINNER!</h1>`;
             document.getElementById('win').classList.remove('d-none');
+            document.getElementById('rstBtn').classList.remove('d-none');
             for (let l = 0; l < app.winArr.length; l++) {
                 app.winArr[l].clicked = true;
             }
         } else if (app.draw == true) {
             document.getElementById('win').innerHTML = `<h1> IT'S A DRAW!`;
             document.getElementById('win').classList.remove('d-none');
+            document.getElementById('rstBtn').classList.remove('d-none');
             for (let l = 0; l < app.winArr.length; l++) {
                 app.winArr[l].clicked = true;   
             }
@@ -153,6 +129,61 @@ class Board { // - a container that holds all the individual tiles
         board.setAttribute('id', 'board');
         board.classList.add('boarder', 'boarder-2', 'h-50')
         document.getElementById('mainContainer').appendChild(board);
+    }
+
+    createHeader() {
+        let header = document.createElement('div');
+        header.setAttribute('class', 'row');
+        header.classList.add('text-center')
+        header.setAttribute('id', 'header');
+        header.innerHTML = '<h1>Tic Tac Toe<h1>';
+        document.getElementById('mainContainer').appendChild(header);
+    }
+
+    players() {
+        let players = document.createElement('div');
+        players.setAttribute('class', 'row');
+        players.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4');
+        players.setAttribute('id', 'players')
+        document.getElementById('mainContainer').appendChild(players);
+
+        let name = document.createElement('div');
+        name.setAttribute('class', 'col');
+        name.classList.add('border', 'border-2');
+        name.setAttribute('id', `player-1`);
+        name.innerHTML = `<h3>Player 1<br>X</h3>`;
+        document.getElementById('players').appendChild(name);
+
+        let name2 = document.createElement('div');
+        name2.setAttribute('class', 'col');
+        name2.classList.add('border', 'border-2');
+        name2.setAttribute('id', `player-2`);
+        name2.innerHTML = `<h3>Player 2<br>O</h3>`;
+        document.getElementById('players').appendChild(name2);  
+    }
+
+    createPlayer() {
+        let whoFirst = document.createElement('div');
+        whoFirst.setAttribute('class', 'row');
+        whoFirst.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4');
+        whoFirst.setAttribute('id', 'whoFirst')
+        whoFirst.innerHTML = `<h1>It's ${app.currentPlayer}'s turn</h1>`;
+        document.getElementById('mainContainer').appendChild(whoFirst);
+        let win = document.createElement('div');
+        win.setAttribute('class', 'row');
+        win.classList.add('boarder', 'boarder-2', 'text-center', 'mb-4', 'd-none');
+        win.setAttribute('id', 'win')
+        document.getElementById('mainContainer').appendChild(win);
+    }
+
+    rstBtn() {
+        let rstBtn = document.createElement('button');
+        rstBtn.setAttribute('type', 'button');
+        rstBtn.setAttribute('id', 'rstBtn');
+        rstBtn.classList.add('border', 'd-none');
+        rstBtn.innerText = 'Reset';
+        rstBtn.addEventListener('click', app.reset);
+        document.getElementById('board').appendChild(rstBtn);
     }
 }
 
@@ -199,16 +230,16 @@ class Tile { //- each individual tile in the tic tac toe grid
             }
         }
 
-        onClick(tileObj, id) {
+        onClick(tileObj) {
             // console.log(tileObj, id);
             if (tileObj.clicked == false) {
                 tileObj.clicked = true
 
                 if (app.currentPlayer === 'O') {
-                    tileObj.tileHTML.innerText = 'O';
+                    tileObj.tileHTML.innerHTML = '<h1><br>O</h1>';
                     tileObj.currentState = 'O';
                 } else {
-                    tileObj.tileHTML.innerText = 'X';
+                    tileObj.tileHTML.innerHTML = '<h1><br>X</h1>';
                     tileObj.currentState = 'X';
                 }
             
@@ -230,12 +261,13 @@ function init() {
     app = new App();
     board1 = new Board();
     tile = new Tile();
-    app.players();
+    board1.createHeader();
+    board1.players();
     app.randomPlayer();
-    app.createPlayer();
+    board1.createPlayer();
     board1.renderBoard();
     tile.grid(3, 3);
-    app.rstBtn();
+    board1.rstBtn();
 }  
 
 // Global Functions:
